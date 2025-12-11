@@ -8,6 +8,7 @@ export default function Login() {
     console.log("Form", form);
     const res = await loginUser(form);
     localStorage.setItem("token", res.data.token);
+    localStorage.setItem("role", res.data.role);
     window.location.href = "/";
   };
 

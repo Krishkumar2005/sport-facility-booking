@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Protected from './components/Protected.tsx'
+import Protected, { AdminProtected } from './components/Protected.tsx'
 import Login from './pages/Login.tsx'
 import Register from './pages/Register.tsx'
 import BookCourt from './pages/BookCourt.tsx'
@@ -37,9 +37,9 @@ const route = createBrowserRouter([
       {
         path: "/pricing/admin",
         element: (
-          <Protected>
+          <AdminProtected>
             <AdminPricingRules/>
-          </Protected>
+          </AdminProtected>
         )
       }
     ]

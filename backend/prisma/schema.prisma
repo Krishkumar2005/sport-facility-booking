@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String   @unique
+  password String
+  role     String   @default("user") // user | admin
+  bookings Booking[]
+}
+
+model Court {
+  id       Int      @id @default(autoincrement())
+  name     String
+  type     String
+  price    Float
+  bookings Booking[]
+}
+
+model Coach {
+  id       Int      @id @default(autoincrement())
+  name     String
+  available Boolean @default(true)
+  bookings Booking[]
+}
+
+model Equipment {
+  id       Int      @id @default(autoincrement())
+  name     String
+  total    Int
+  bookings BookingEquipment[]
+}
+
+model Booking {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  court     Court    @relation(fields: [courtId], references: [id])
+  courtId   Int
+  coach     Coach?   @relation(fields: [coachId], references: [id])
+  coachId   Int?
+  startTime DateTime
+  endTime   DateTime
+  status    String   @default("confirmed")
+  pricing   Float
+  equipments BookingEquipment[]
+}
+
+model BookingEquipment {
+  id         Int       @id @default(autoincrement())
+  booking    Booking   @relation(fields: [bookingId], references: [id])
+  bookingId  Int
+  equipment  Equipment @relation(fields: [equipmentId], references: [id])
+  equipmentId Int
+  quantity   Int
+}
+
+model PricingRule {
+  id        String   @id @default(uuid())
+  name      String
+  ruleType  String   // "weekend", "peak", "indoorPremium"
+  startHour Int?
+  endHour   Int?
+  multiplier Float
+  active    Boolean  @default(true)
+}

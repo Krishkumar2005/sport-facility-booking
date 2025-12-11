@@ -65,7 +65,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             });
             return res.json({
                 message: "Admin logged in",
-                user: { email, role: "admin" }
+                data: { email, role: "admin", token }
             });
         }
         // --- NORMAL USER LOGIN ---
@@ -82,7 +82,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         res.json({
             message: "User logged in",
-            user: { id: user.id, email: user.email, role: "user" }
+            data: { user_id: user.id, email: user.email, role: "user", token }
         });
     }
     catch (error) {

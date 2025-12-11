@@ -13,7 +13,9 @@ const app = express();
 dotenv.config({path: '../.env'})
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: "*",// direct frontend ka url bhi de skte h like "http://localhost:5173"
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }))
 const port = process.env.PORT

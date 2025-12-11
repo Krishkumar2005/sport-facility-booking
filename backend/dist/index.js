@@ -14,7 +14,9 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 dotenv_1.default.config({ path: '../.env' });
 app.use((0, cors_1.default)({
-    origin: process.env.CORS_ORIGIN,
+    origin: "*", // direct frontend ka url bhi de skte h like "http://localhost:5173"
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }));
 const port = process.env.PORT;

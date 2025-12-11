@@ -65,7 +65,7 @@ export const login = async (req: Request, res: Response) => {
   
       return res.json({
         message: "Admin logged in",
-        user: { email, role: "admin" }
+        data: { email, role: "admin", token }
       });
     }
   
@@ -89,7 +89,7 @@ export const login = async (req: Request, res: Response) => {
   
     res.json({
       message: "User logged in",
-      user: { id: user.id, email: user.email, role: "user" }
+      data: { user_id: user.id, email: user.email, role: "user", token }
     });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

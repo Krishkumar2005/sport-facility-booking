@@ -10,7 +10,7 @@ function App() {
       <div className='w-full h-full flex flex-col
      '>
        <Navbar/>
-        <main>
+        <main className='flex justify-center'>
           <Outlet />
         </main>
         

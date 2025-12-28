@@ -13,7 +13,7 @@ export default function Register() {
 
   return (
      <>
-            <form onSubmit={submit} className="shadow-xl p-8 sm:pl-16 md:pl-14 pt-18 m-6 rounded-2xl flex flex-col items-start sm:w-sm w-80">
+            <form onSubmit={submit} className="shadow-xl p-8 sm:pl-16 md:pl-13 pt-18 m-6 rounded-2xl flex flex-col items-start sm:w-sm w-80">
                 <h1 className="self-center text-2xl mb-10 font-extrabold md:text-3xl">SignUp</h1>
                 <label htmlFor="name" className="pb-4 md:text-xl font-bold font-serif">Name</label>
                 <input className="border rounded outline-0 mb-4 sm:w-70 w-64 p-1" id="name" type="text" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} />
